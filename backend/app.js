@@ -11,7 +11,15 @@ import { errorMiddleware } from "./middlewares/error.js";
 const app = express();
 
 dotenv.config({ path: "./config/config.env" });
-app.use(cors());
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true); // Allow requests without an origin (e.g., mobile apps, Postman)
+      return callback(null, origin); // Allow all domains dynamically
+    },
+    credentials: true, // Allow cookies and authentication headers
+  })
+);
 
 
 
