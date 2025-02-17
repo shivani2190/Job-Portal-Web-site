@@ -9,8 +9,10 @@ import applicationRouter from "./routes/applicationRouter.js";
 import { dbConnection } from "./database/dbConnection.js";
 import { errorMiddleware } from "./middlewares/error.js";
 const app = express();
+const cors = require("cors");
 
 dotenv.config({ path: "./config/config.env" });
+app.use(cors());
 
 
 app.use(
